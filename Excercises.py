@@ -34,10 +34,14 @@ def four ():
     if y%2 == 0:
         print ("Even number")
 
+def five ():
+    mylist = [1, 2, 3]
+
+    print (mylist[3])
 
 
 
 
 if __name__ == "__main__":
-    four()
+    five()
 
