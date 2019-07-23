@@ -35,9 +35,9 @@ def four ():
         print ("Even number")
 
 def five ():
-    mylist = [1, 2, 3]
+    mylist = [1, 2, 3,]
 
-    print (mylist[3])
+    print (mylist[2])
 
 
 
