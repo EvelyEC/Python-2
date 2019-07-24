@@ -9,13 +9,14 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 color = (50, 100, 100)
 
-fish_image = pygame.image.load("saver.png")
+
+fish_image = pygame.image.load("fish.png")
 fish_image = pygame.transform.smoothscale(fish_image,(200,100))
 
 fish_rect = fish_image.get_rect()
 
 fish_rect.center = (width/2, height/2)
-speed = pygame.math.Vector2(10,10)
+speed = pygame.math.Vector2(0,0)
 
 def movefish():
     global fish_image
@@ -35,11 +36,53 @@ def movefish():
 
 def main():
     while True:
+        global color
         clock.tick(60)
-        screen.fill (color)
+        screen.fill(color)
         screen.blit(fish_image, fish_rect)
         pygame.display.flip()
         movefish()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit();
+                sys.exit()
+                #main = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT or event.key == ord('a'):
+                color = (255, 0, 0)
+                speed[0] += -1
+            if event.key == pygame.K_RIGHT or event.key == ord('d'):
+                speed[0] += 1
+            if event.key == pygame.K_UP or event.key == ord('w'):
+                speed [1] += -1
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                speed [1] += 1
+            if event.key == pygame.K_SPACE:
+                speed [1] += -1
+            if event.key == event.key == ord('q'):
+                speed [1] += -1
+                speed [0] += -1
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == ord('a'):
+                speed[0] = 0
+            if event.key == pygame.K_RIGHT or event.key == ord('d'):
+                speed[0] = 0
+            if event.key == pygame.K_UP or event.key == ord('w'):
+                speed [1] = 0
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                speed [1] = 0
+            if event.key == pygame.K_SPACE:
+                speed [1] += 1
+            if event.key == ord('q'):
+                speed[1] = 0
+                speed[0] = 0
+#                pygame.quit()
+#                sys.exit()
+                #main = False
+
 
 if __name__ == "__main__":
     main()
